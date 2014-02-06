@@ -24,23 +24,21 @@
 								</outputEntries>
 							</builder>
 							<tool errorParsers="org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="org.eclipse.cdt.build.core.settings.holder.libs.1844369373" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs">
-								<option id="org.eclipse.cdt.build.core.settings.holder.libfiles.628519629" name="Library Files" superClass="org.eclipse.cdt.build.core.settings.holder.libfiles"/>
-								<option id="org.eclipse.cdt.build.core.settings.holder.libpaths.1705781501" name="Library Paths" superClass="org.eclipse.cdt.build.core.settings.holder.libpaths"/>
+								<option id="org.eclipse.cdt.build.core.settings.holder.libfiles.628519629" name="Library Files" superClass="org.eclipse.cdt.build.core.settings.holder.libfiles" valueType="libFiles"/>
+								<option id="org.eclipse.cdt.build.core.settings.holder.libpaths.1705781501" name="Library Paths" superClass="org.eclipse.cdt.build.core.settings.holder.libpaths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a"/>
+								</option>
 							</tool>
 							<tool errorParsers="org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="org.eclipse.cdt.build.core.settings.holder.991472034" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1413805376" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/projects/YGODroid/proj.android/jni"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/cocos2dx"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/cocos2dx/include"/>
-									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
-									<listOptionValue builtIn="false" value="G:/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
-									<listOptionValue builtIn="false" value="G:/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/system/include"/>
-									<listOptionValue builtIn="false" value="G:/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
-									<listOptionValue builtIn="false" value="G:/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/platforms/android-8/arch-arm/usr/include"/>
-									<listOptionValue builtIn="false" value="G:/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/toolchains/arm-linux-androideabi-4.6/prebuilt/windows-x86_64/lib/gcc/arm-linux-androideabi/4.6/include"/>
-									<listOptionValue builtIn="false" value="G:/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/stlport/stlport"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/projects/YGODroid/proj.android/YGODroid/YGODroid/scripting/lua/lua"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/extensions"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/jni&quot;"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/../../../cocos2dx"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/../../../cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/system/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/platforms/android-8/arch-arm/usr/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="COCOS2DX_ROOT=${ProjDirPath}/../../../"/>
@@ -49,19 +47,14 @@
 							</tool>
 							<tool errorParsers="org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="org.eclipse.cdt.build.core.settings.holder.2035290044" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.898748423" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/projects/YGODroid/proj.android/jni"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/cocos2dx"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/cocos2dx/include"/>
-									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
-									<listOptionValue builtIn="false" value="I:/develop/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/system/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/android-ndk-r9-windows-x86_64/android-ndk-r9/platforms/android-8/arch-arm/usr/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/android-ndk-r9-windows-x86_64/android-ndk-r9/toolchains/arm-linux-androideabi-4.6/prebuilt/windows-x86_64/lib/gcc/arm-linux-androideabi/4.6/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/stlport/stlport"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/projects/YGODroid/proj.android/YGODroid/YGODroid/scripting/lua/lua"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/extensions"/>
-									<listOptionValue builtIn="false" value="&quot;G:\cocos2d-x-2.2.2\projects\YGODroid\Classes\sqlite3&quot;"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/../../../../cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/jni&quot;"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/../../../../cocos2dx"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/stlport/stlport"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/platforms/android-8/arch-arm/usr/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="COCOS2DX_ROOT=${ProjDirPath}/../../../"/>
@@ -70,18 +63,17 @@
 							</tool>
 							<tool errorParsers="org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="org.eclipse.cdt.build.core.settings.holder.731367497" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1548475709" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/projects/YGODroid/proj.android/jni"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/cocos2dx"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/cocos2dx/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/system/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/platforms/android-8/arch-arm/usr/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/toolchains/arm-linux-androideabi-4.6/prebuilt/windows-x86_64/lib/gcc/arm-linux-androideabi/4.6/include"/>
-									<listOptionValue builtIn="false" value="I:/develop/crack/android-ndk-r9-windows-x86_64/android-ndk-r9/sources/cxx-stl/stlport/stlport"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/projects/YGODroid/proj.android/YGODroid/YGODroid/scripting/lua/lua"/>
-									<listOptionValue builtIn="false" value="G:/cocos2d-x-2.2.2/extensions"/>
-									<listOptionValue builtIn="false" value="&quot;G:\cocos2d-x-2.2.2\projects\YGODroid\Classes\sqlite3&quot;"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/jni"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/jni&quot;"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/../../../../cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/system/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/toolchains/arm-linux-androideabi-4.6/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.6/include"/>
+									<listOptionValue builtIn="false" value="${ProjDirPath}/../../../../cocos2dx"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/toolchains/arm-linux-androideabi-4.6/prebuilt/windows-x86_64/lib/gcc/arm-linux-androideabi/4.6/include"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/sources/cxx-stl/stlport/stlport"/>
+									<listOptionValue builtIn="false" value="${NDK_ROOT}/platforms/android-8/arch-arm/usr/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="COCOS2DX_ROOT=${ProjDirPath}/../../../"/>
@@ -94,9 +86,9 @@
 						<entry excluding="extensions|scripting|cocos2dx|Resources|cocosdenshion|Classes" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Classes"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Resources"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="scripting"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="cocos2dx"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="extensions"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="scripting"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

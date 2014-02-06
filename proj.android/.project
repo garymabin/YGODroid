@@ -112,12 +112,12 @@
 		<link>
 			<name>cocos2dx</name>
 			<type>2</type>
-			<location>G:/cocos2d-x-2.2.2/cocos2dx</location>
+			<location>COCOS2DX/cocos2dx</location>
 		</link>
 		<link>
 			<name>extensions</name>
 			<type>2</type>
-			<location>G:/cocos2d-x-2.2.2/extensions</location>
+			<location>COCOS2DX/extensions</location>
 		</link>
 		<link>
 			<name>scripting</name>

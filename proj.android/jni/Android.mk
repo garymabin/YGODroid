@@ -16,7 +16,7 @@ LOCAL_SRC_FILES := ygodroid/main.cpp \
                    ../../Classes/gui/CCMenuItemImageFont.cpp \
                    ../../Classes/gui/YGOLANModeLayer.cpp \
                    ../../Classes/gui/YGOReplayModeLayer.cpp \
-                   ../../CLasses/gui/YGOSingleModeLayer.cpp \
+                   ../../Classes/gui/YGOSingleModeLayer.cpp \
                    ../../Classes/gui/YGOCardCell.cpp \
                    ../../Classes/gui/YGOCardDeck.cpp \
                    ../../Classes/gui/YGOCardDeckGrid.cpp \
