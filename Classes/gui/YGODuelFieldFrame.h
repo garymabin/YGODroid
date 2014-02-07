@@ -10,10 +10,9 @@
 
 #include "CommonGui.h"
 #include "YGODeckManager.h"
-#include "YGOCardCell.h"
-#include "YGOCardDeck.h"
 #include "YGOHandCardList.h"
 #include "YGOGameConfig.h"
+#include "CCMenuItemImageFont.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -21,16 +20,26 @@ using namespace gui;
 
 namespace ygo {
 
+class YGOMainScene;
+
 class YGODuelFieldFrame: public cocos2d::CCLayer {
 public:
 	YGODuelFieldFrame();
 	virtual ~YGODuelFieldFrame();
 	virtual bool init();
+	void cardInHandDraggedCallBack(CCObject* pSender, void* param);
+	void widgetTouchedCallBack(CCObject* pSender);
+	void menuItemCallback(CCObject* pSender);
+	Button* addNewButton(Widget* container, int tag, const char* key);
+	void buttonCallback(CCObject* pSender, TouchEventType type);
+	void onEvent(int tag);
 	CREATE_FUNC(YGODuelFieldFrame)
 protected:
 	TouchGroup* m_pWidgetContainer;
 	YGODeckManager* m_pDeckMgr;
 	std::vector<CCString*> m_pDeckNameList;
+	CCMenu* m_pMenu;
+	CC_SYNTHESIZE_READONLY(Button*, m_pSurranderButton, SurranderButton);
 };
 
 } /* namespace ygo */

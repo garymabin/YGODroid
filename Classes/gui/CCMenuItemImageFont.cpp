@@ -28,7 +28,7 @@ CCMenuItemImageFont* CCMenuItemImageFont::itemWithTarget(const char* text,
 		const char* fontFile, const char * menubg, CCObject* target,
 		SEL_MenuHandler selector) {
 	CCSprite *sprite = CCSprite::create(menubg);
-	CCLabelTTF* label = CCLabelTTF::create(text, fontFile, 24);
+	CCLabelTTF* label = CCLabelTTF::create(text, fontFile, 30);
 
 	CCSize size = sprite->getContentSize();
 
@@ -38,12 +38,9 @@ CCMenuItemImageFont* CCMenuItemImageFont::itemWithTarget(const char* text,
 
 	//这里不清楚的可以详细看下CCRenderTexture.h里面的定义
 	texture->begin();
-
-	//must setposition before call visit
-	CCPoint newPoint = sprite->convertToWorldSpaceAR( ccp(size.width/2 , size.height/3) );
-	sprite->setPosition(newPoint);
+	sprite->setPosition(ccp(size.width/2, size.height/2));
 	sprite->visit();
-	label->setPosition(newPoint);
+	label->setPosition(ccp(size.width/2, size.height/2));
 	label->visit();
 
 	texture->end();

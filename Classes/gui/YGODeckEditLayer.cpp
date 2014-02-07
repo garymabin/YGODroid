@@ -581,8 +581,6 @@ void YGODeckEditLayer::onEvent(int tag) {
 		break;
 	}
 	case DECK_EDIT_PANEL_DECK_DETAIL: {
-		CCLOG("YGODeckEditLayer::DECK_EDIT_PANEL_DECK_DETAIL, Enter()");
-		CCLOG("m_pListDeckDetail = %0x", m_pListDeckDetail);
 		const char* str = m_pListDeckDetail->getCurrentText();
 		CCLOG("m_pListDeckDetail->getCurrentText()) = %s", str);
 		m_pDeckMgr->LoadDeck(m_pListDeckDetail->getCurrentText());

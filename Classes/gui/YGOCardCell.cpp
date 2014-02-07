@@ -15,11 +15,15 @@ YGOCardCell::YGOCardCell() :
 		m_pSprite(NULL)/*, m_pRender(NULL)*/{
 	// TODO Auto-generated constructor stub
 	m_requestSize = CCSizeZero;
+	m_pCoverTexture = YGOImageManager::sharedImageManager()->getCoverTexture();
+	CC_SAFE_RETAIN(m_pCoverTexture);
 }
 
 YGOCardCell::~YGOCardCell() {
 	// TODO Auto-generated destructor stub
 	m_pSprite->release();
+	CC_SAFE_RELEASE_NULL(m_pCoverTexture);
+	CC_SAFE_RELEASE_NULL(m_pTexture);
 }
 
 bool YGOCardCell::initWithCard(code_pointer card, bool isThumbNail) {
@@ -27,16 +31,17 @@ bool YGOCardCell::initWithCard(code_pointer card, bool isThumbNail) {
 		return false;
 	}
 	m_pCard = card;
-	CCTexture2D* pTexture = NULL;
 	m_isThumbnail = isThumbNail;
 	if (m_isThumbnail) {
-		pTexture = YGOImageManager::sharedImageManager()->getThumbImage(
+		m_pTexture = YGOImageManager::sharedImageManager()->getThumbImage(
 				m_pCard->first);
 	} else {
-		pTexture = YGOImageManager::sharedImageManager()->getImage(
+		m_pTexture = YGOImageManager::sharedImageManager()->getImage(
 				m_pCard->first);
 	}
-	m_pSprite = CCSprite::createWithTexture(pTexture);
+	setAnchorPoint(ccp (0.5, 0.5));
+	m_pTexture->retain();
+	m_pSprite = CCSprite::createWithTexture(m_pTexture);
 	m_pSprite->retain();
 	CCSize size = m_pSprite->getContentSize();
 	if (!m_requestSize.equals(CCSizeZero)) {
@@ -45,11 +50,14 @@ bool YGOCardCell::initWithCard(code_pointer card, bool isThumbNail) {
 	} else {
 		m_requestSize = size;
 	}
-	this->setAnchorPoint(CCPointZero);
-	this->setAnchorPoint(CCPointZero);
-	m_pSprite->setAnchorPoint(CCPointZero);
-	m_pSprite->setPosition(CCPointZero);
-	this->addNode(m_pSprite);
+	m_pRender = CCRenderTexture::create(m_requestSize.width, m_requestSize.height);
+	m_pRender->setPosition(ccp(m_requestSize.width/2, m_requestSize.height/2));
+	m_pRender->begin();
+	m_pSprite->setPosition(ccp(m_requestSize.width/2, m_requestSize.height/2));
+	m_pSprite->visit();
+	m_pRender->end();
+	m_pRender->removeChild(m_pSprite);
+	this->addNode(m_pRender);
 	return true;
 }
 
@@ -69,14 +77,21 @@ void YGOCardCell::resetWithData(code_pointer card) {
 		return;
 	}
 	m_pCard = card;
-	CCTexture2D* image = m_pSprite->getTexture();
+	CC_SAFE_RELEASE_NULL(m_pTexture);
 	if (m_isThumbnail) {
-		image = YGOImageManager::sharedImageManager()->getThumbImage(
+		m_pTexture = YGOImageManager::sharedImageManager()->getThumbImage(
 				m_pCard->first);
 	} else {
-		image = YGOImageManager::sharedImageManager()->getImage(m_pCard->first);
+		m_pTexture = YGOImageManager::sharedImageManager()->getImage(m_pCard->first);
 	}
-	m_pSprite->setTexture(image);
+	m_requestSize = m_pTexture->getContentSize();
+	m_pRender->setContentSize(m_requestSize);
+	m_pRender->setPosition(ccp(m_requestSize.width/2, m_requestSize.height/2));
+	m_pSprite->setTexture(m_pTexture);
+	m_pRender->beginWithClear(0,0,0,0);
+	m_pSprite->setPosition( ccp(m_requestSize.width/2, m_requestSize.height/2));
+	m_pSprite->visit();
+	m_pRender->end();
 }
 
 bool YGOCardCell::initWithCard(code_pointer card, CCSize size,
@@ -95,6 +110,53 @@ YGOCardCell* YGOCardCell::create(code_pointer card, CCSize size,
 		CC_SAFE_DELETE(pCell);
 	}
 	return NULL;
+}
+
+void YGOCardCell::showCover() {
+	CCSize coverSize = m_pCoverTexture->getContentSize();
+	CCLOG("m_requestSize.width = %f, coverSize.width = %f", m_requestSize.width, coverSize.width);
+	float scaleFactorX = m_requestSize.width / coverSize.width;
+	float scaleFactotY = m_requestSize.height / coverSize.height;
+
+	m_pRender->setContentSize(CCSizeMake(m_requestSize.height, m_requestSize.width));
+	m_pSprite->setTexture(m_pCoverTexture);
+	m_pRender->beginWithClear(0,0,0,0);
+//	m_pSprite->setScaleX(scaleFactorX);
+//	m_pSprite->setScaleY(scaleFactotY);
+	m_pSprite->setRotation(90);
+	m_pSprite->setPosition(ccp(m_requestSize.height/2, m_requestSize.width/2));
+	m_pSprite->visit();
+	m_pRender->end();
+	m_pSprite->setRotation(0);
+}
+
+void YGOCardCell::showNormal() {
+	setContentSize(m_requestSize);
+	removeNode(m_pRender);
+	m_pRender = CCRenderTexture::create(m_requestSize.width, m_requestSize.height);
+	m_pRender->setPosition(m_requestSize.width, m_requestSize.height);
+	m_pRender->begin();
+	m_pSprite->setTexture(m_pTexture);
+	m_pSprite->setPosition(ccp(m_requestSize.width/2, m_requestSize.height/2));
+	m_pSprite->visit();
+	addNode(m_pRender);
+	m_pRender->end();
+}
+
+void YGOCardCell::showScaleBy(float scaleBy) {
+	float currentScale = m_pSprite->getScaleX();
+	removeNode(m_pRender);
+	setContentSize(CCSizeMake(m_requestSize.width * scaleBy, m_requestSize.height * scaleBy));
+	m_pRender = CCRenderTexture::create(m_requestSize.width * scaleBy, m_requestSize.height * scaleBy);
+	m_pRender->setPosition(m_requestSize.width * scaleBy / 2 , m_requestSize.height * scaleBy / 2);
+	m_pRender->begin();
+	m_pSprite->setTexture(m_pTexture);
+	m_pSprite->setPosition(ccp(m_requestSize.width * scaleBy / 3*2, m_requestSize.height * scaleBy *2/3));
+	m_pSprite->setScale(currentScale * scaleBy);
+	m_pSprite->visit();
+	m_pRender->end();
+	addNode(m_pRender);
+	m_pSprite->setScale(currentScale);
 }
 
 } /* namespace ygo */

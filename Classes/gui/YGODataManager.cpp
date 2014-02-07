@@ -57,7 +57,6 @@ bool YGODataManager::LoadDB(const char* file) {
 					(const char*) sqlite3_column_text(pStmt, 12), strBuffer);
 			if (len) {
 				cs.name = new wchar_t[len + 1];
-				CCLog("name = %ls", cs.name);
 				memcpy(cs.name, strBuffer, (len + 1) * sizeof(char));
 			} else
 				cs.name = 0;
