@@ -40,14 +40,16 @@ public:
 	void resetWithData(code_pointer card);
 	void showCover();
 	void showNormal();
-	void showScaleBy(float scale);
+	void showScaleBy(float scaleBy);
 protected:
-	bool m_isThumbnail;
+	bool m_bIsThumbnail;
+	float m_scaleX;
+	float m_scaleY;
 	CCTexture2D* m_pCoverTexture;
 	CCTexture2D* m_pTexture;
 	CC_SYNTHESIZE_READONLY(CCSize, m_requestSize, RequestSize);
 	CC_SYNTHESIZE_READONLY(cocos2d::CCSprite*, m_pSprite, Sprite);
-	CC_SYNTHESIZE_READONLY(cocos2d::CCRenderTexture*, m_pRender, Render);
+//	CC_SYNTHESIZE_READONLY(cocos2d::CCRenderTexture*, m_pRender, Render);
 	CC_SYNTHESIZE_READONLY(code_pointer, m_pCard, Card);
 };
 

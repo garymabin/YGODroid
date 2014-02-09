@@ -70,7 +70,7 @@ bool DropDownList::init(const char * defaultFn, const char * pressedFn,
 //				cccontrol_selector(DropDownList::dropDownListCallBack),
 //				CCControlEventTouchDown);
 
-		m_pDropDownListItem = SelectedBoxSprite::create(
+		m_pDropDownListItem = SelectedItemsSprite::create(
 				"list_item_bg.png", size, strs, textSize);
 		m_pDropDownListItem->retain();
 		m_pDropDownListItem->setAnchorPoint( ccp(0.5, 0.5));

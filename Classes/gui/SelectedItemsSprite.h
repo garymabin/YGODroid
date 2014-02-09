@@ -17,13 +17,13 @@ USING_NS_CC;
 
 namespace ygo {
 
-class SelectedBoxSprite: public cocos2d::extension::CCScale9Sprite,
+class SelectedItemsSprite: public cocos2d::extension::CCScale9Sprite,
 		public cocos2d::CCTargetedTouchDelegate {
 public:
-	SelectedBoxSprite();
-	virtual ~SelectedBoxSprite();
+	SelectedItemsSprite();
+	virtual ~SelectedItemsSprite();
 
-    static SelectedBoxSprite* create(const char* name, CCSize size, std::vector<CCString*>* strs, int textSize);
+    static SelectedItemsSprite* create(const char* name, CCSize size, std::vector<CCString*>* strs, int textSize);
     bool setUpdateList(std::vector<CCString*>* strs);
 
     virtual void onEnter();

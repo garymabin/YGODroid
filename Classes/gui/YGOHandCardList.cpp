@@ -96,7 +96,6 @@ bool YGOHandCardList::onTouchBegan(cocos2d::CCTouch* pTouch,
 		cocos2d::CCEvent* pEvent) {
 	bool bRet = Widget::onTouchBegan(pTouch, pEvent);
 	CCPoint point1 = pTouch->getLocation();
-	CCLOG("touchbegin point1.x = %f, point1.y = %f", point1.x, point1.y);
 	if (bRet) {
 		m_bTouched = true;
 		CCPoint point = this->convertToNodeSpace(point1);

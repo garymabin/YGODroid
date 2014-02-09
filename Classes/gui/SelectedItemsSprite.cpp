@@ -1,27 +1,27 @@
 /*
- * SelectedBoxSprite.cpp
+ * SelectedItemsSprite.cpp
  *
  *  Created on: 2014年1月29日
  *      Author: mabin
  */
 
-#include "SelectedBoxSprite.h"
+#include "SelectedItemsSprite.h"
 USING_NS_CC;
 using namespace std;
 
 namespace ygo {
 
-SelectedBoxSprite::SelectedBoxSprite() {
+SelectedItemsSprite::SelectedItemsSprite() {
 	m_pItemArray = CCArray::create();
 	m_pItemArray->retain();
 }
 
-SelectedBoxSprite::~SelectedBoxSprite() {
+SelectedItemsSprite::~SelectedItemsSprite() {
 	m_pItemArray->release();
 }
 
-SelectedBoxSprite* SelectedBoxSprite::create(const char* name, CCSize size, vector<CCString *>* strs, int textSize) {
-	SelectedBoxSprite* pobView = new SelectedBoxSprite();
+SelectedItemsSprite* SelectedItemsSprite::create(const char* name, CCSize size, vector<CCString *>* strs, int textSize) {
+	SelectedItemsSprite* pobView = new SelectedItemsSprite();
 	pobView->m_itemSize = size;
 	pobView->m_textSize = textSize;
 	if (pobView && pobView->initWithFile(name) && pobView->setUpdateList(strs)) {
@@ -32,7 +32,7 @@ SelectedBoxSprite* SelectedBoxSprite::create(const char* name, CCSize size, vect
 	return NULL;
 }
 
-inline void SelectedBoxSprite::addItem(
+inline void SelectedItemsSprite::addItem(
 		const char* str, int i) {
 	CCLabelTTF* label = CCLabelTTF::create(str, "Arial", m_textSize);
 	label->setColor(ccBLACK);
@@ -44,7 +44,7 @@ inline void SelectedBoxSprite::addItem(
 	setContentSize(CCSizeMake(m_itemSize.width, m_itemSize.height * (i + 1)));
 }
 
-bool SelectedBoxSprite::setUpdateList(vector<CCString*>* strs) {
+bool SelectedItemsSprite::setUpdateList(vector<CCString*>* strs) {
 	bool isRet = false;
 	do {
 		this->setCascadeOpacityEnabled(true);
@@ -59,18 +59,18 @@ bool SelectedBoxSprite::setUpdateList(vector<CCString*>* strs) {
 	return isRet;
 }
 
-void SelectedBoxSprite::onEnter() {
+void SelectedItemsSprite::onEnter() {
 	CCScale9Sprite::onEnter();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(
 			this, kCCMenuHandlerPriority - 1, true);
 }
 
-void SelectedBoxSprite::onExit() {
+void SelectedItemsSprite::onExit() {
 	CCScale9Sprite::onExit();
 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 }
 
-bool SelectedBoxSprite::ccTouchBegan(CCTouch* touch, CCEvent* event) {
+bool SelectedItemsSprite::ccTouchBegan(CCTouch* touch, CCEvent* event) {
 	CCLOG("SelectedBoxSprite::ccTouchBegan");
 	bool bRet = false;
 	if (this->isVisible()) { //注意要在列表框可视化的情况下再作处理
@@ -96,7 +96,7 @@ bool SelectedBoxSprite::ccTouchBegan(CCTouch* touch, CCEvent* event) {
 					selectedSprite->runAction(
 							CCSequence::create(blink,
 									CCCallFuncO::create(this,
-											callfuncO_selector(SelectedBoxSprite::didSelectCallBack),
+											callfuncO_selector(SelectedItemsSprite::didSelectCallBack),
 											(CCObject*) selectedSprite), NULL));
 
 					break;
@@ -110,7 +110,7 @@ bool SelectedBoxSprite::ccTouchBegan(CCTouch* touch, CCEvent* event) {
 			this->runAction(
 					CCSequence::create(fadeout,
 							CCCallFunc::create(this,
-									callfunc_selector(SelectedBoxSprite::didSelectCallBack_1)),
+									callfunc_selector(SelectedItemsSprite::didSelectCallBack_1)),
 							NULL));
 		}
 	}
@@ -118,24 +118,24 @@ bool SelectedBoxSprite::ccTouchBegan(CCTouch* touch, CCEvent* event) {
 	return bRet;
 }
 
-void SelectedBoxSprite::ccTouchMoved(CCTouch* touch, CCEvent* event) {
+void SelectedItemsSprite::ccTouchMoved(CCTouch* touch, CCEvent* event) {
 }
 
-void SelectedBoxSprite::ccTouchEnded(CCTouch* touch, CCEvent* event) {
+void SelectedItemsSprite::ccTouchEnded(CCTouch* touch, CCEvent* event) {
 }
 
-CCRect SelectedBoxSprite::rect() {
+CCRect SelectedItemsSprite::rect() {
 	CCSize size = getContentSize();
 	return CCRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
 }
 
-bool SelectedBoxSprite::containsTouchLocation(CCTouch* touch) {
+bool SelectedItemsSprite::containsTouchLocation(CCTouch* touch) {
 	CCRect my = rect();
 	CCPoint p = convertTouchToNodeSpaceAR(touch);
 	return my.containsPoint(p);
 }
 
-void SelectedBoxSprite::didSelectCallBack(CCObject* obj) {
+void SelectedItemsSprite::didSelectCallBack(CCObject* obj) {
 	CCSprite* spri = (CCSprite*) obj;
 	CCNotificationCenter::sharedNotificationCenter()->postNotification(
 			MyNotification, obj);
@@ -145,15 +145,15 @@ void SelectedBoxSprite::didSelectCallBack(CCObject* obj) {
 	this->runAction(
 			CCSequence::create(fadeout,
 					CCCallFunc::create(this,
-							callfunc_selector(SelectedBoxSprite::didSelectCallBack_1)),
+							callfunc_selector(SelectedItemsSprite::didSelectCallBack_1)),
 					NULL));
 }
 
-void SelectedBoxSprite::pushBackItem(const char* str) {
+void SelectedItemsSprite::pushBackItem(const char* str) {
 	addItem(str, m_pItemArray->count());
 }
 
-int SelectedBoxSprite::indexOfText(const char* str) {
+int SelectedItemsSprite::indexOfText(const char* str) {
 	CCObject* obj = NULL;
 	int i = 0;
 	CCARRAY_FOREACH(m_pItemArray, obj) {
@@ -165,7 +165,7 @@ int SelectedBoxSprite::indexOfText(const char* str) {
 	return -1;
 }
 
-void SelectedBoxSprite::didSelectCallBack_1() {
+void SelectedItemsSprite::didSelectCallBack_1() {
 	this->setVisible(false);
 }
 

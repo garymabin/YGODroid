@@ -22,7 +22,7 @@ LOCAL_SRC_FILES := ygodroid/main.cpp \
                    ../../Classes/gui/YGOCardDeckGrid.cpp \
                    ../../Classes/gui/YGODeckEditLayer.cpp \
                    ../../Classes/gui/DropDownList.cpp \
-                   ../../Classes/gui/SelectedBoxSprite.cpp \
+                   ../../Classes/gui/SelectedItemsSprite.cpp \
                    ../../Classes/gui/YGODeckBuilder.cpp \
                    ../../Classes/gui/YGOGameConfig.cpp \
                    ../../Classes/gui/YGOClientCard.cpp \
@@ -35,8 +35,10 @@ LOCAL_SRC_FILES := ygodroid/main.cpp \
                    ../../Classes/gui/YGODuelPrepareLayer.cpp \
                    ../../Classes/gui/YGODuelScene.cpp \
                    ../../Classes/gui/YGODuelFieldLayer.cpp \
+                   ../../Classes/gui/YGODuelField.cpp \
                    ../../Classes/gui/YGODuelFieldFrame.cpp \
                    ../../Classes/gui/YGOHandCardList.cpp \
+                   ../../Classes/gui/YGOCardOpsPanel.cpp \
                    ../../Classes/gui/ExitDialog.cpp \
                    ../../Classes/gui/DialogLayer.cpp
                    

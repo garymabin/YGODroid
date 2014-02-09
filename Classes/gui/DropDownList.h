@@ -10,7 +10,7 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
-#include "SelectedBoxSprite.h"
+#include "SelectedItemsSprite.h"
 
 USING_NS_CC;
 using namespace std;
@@ -60,7 +60,7 @@ private:
 	//通知中心的回调方法
 	void myNotificationFunc(CCObject* obj);
 	CCLabelTTF* m_pLabel;
-	SelectedBoxSprite* m_pDropDownListItem;
+	SelectedItemsSprite* m_pDropDownListItem;
 	CCObject* m_pTarget;
 	SEL_CallFuncO m_pFnClicked;
 };

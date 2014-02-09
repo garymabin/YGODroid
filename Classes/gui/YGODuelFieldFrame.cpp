@@ -6,6 +6,8 @@
  */
 
 #include "YGODuelFieldFrame.h"
+
+#include "YGODuelField.h"
 #include "YGOMainScene.h"
 
 namespace ygo {
@@ -13,12 +15,10 @@ namespace ygo {
 YGODuelFieldFrame::YGODuelFieldFrame() {
 	// TODO Auto-generated constructor stub
 	m_pDeckMgr = YGODeckManager::sharedDeckManager();
-	m_pMenu = NULL;
 }
 
 YGODuelFieldFrame::~YGODuelFieldFrame() {
 	// TODO Auto-generated destructor stub
-	CC_SAFE_RELEASE_NULL(m_pMenu);
 }
 
 bool YGODuelFieldFrame::init() {
@@ -51,19 +51,20 @@ bool YGODuelFieldFrame::init() {
 
 		Widget* pCardFieldPanel = dynamic_cast<Widget*>(panel->getChildByTag(
 				DUEL_FIELD_IMAGE_DUEL_FIELD));
-		pCardFieldPanel->setTouchEnabled(false);
-		CCCamera* camera = pCardFieldPanel->getCamera();
-		float x = 0, y = 0, z = 0;
-		camera->getEyeXYZ(&x, &y, &z);
-		CCLOG("camera x =%f, y=%f, z=%f", x, y, z);
-		camera->setCenterXYZ(x - 0.000001, y + 0.0001, z + 0.0001);
+		YGODuelField* pDuelField = YGODuelField::create();
+		pDuelField->setPosition(CCPointZero);
+		pCardFieldPanel->addChild(pDuelField);
+
+//		CCCamera* camera = pCardFieldPanel->getCamera();
+//		float x = 0, y = 0, z = 0;
+//		camera->getCenterXYZ(&x, &y, &z);
+//		CCLOG("camera x =%f, y=%f, z=%f", x, y, z);
+//		camera->setCenterXYZ(x, y + 0.0001, z + 0.0001);
 
 		//己方手牌
 		Widget* pCardInHandPanel = dynamic_cast<Widget*>(panel->getChildByTag(
 				DUEL_FIELD_PANEL_CARD_IN_HAND1));
 		CC_BREAK_IF(!pCardInHandPanel);
-		pCardInHandPanel->setEnabled(true);
-		pCardInHandPanel->setTouchEnabled(true);
 		std::vector<code_pointer> data;
 		for (int i = 0; i < 5; i++) {
 			data.push_back(m_pDeckMgr->current_deck.main.at(i));
@@ -92,24 +93,23 @@ bool YGODuelFieldFrame::init() {
 void YGODuelFieldFrame::cardInHandDraggedCallBack(CCObject* pSender,
 		void* param) {
 	CCLOG("cardInHand dragged!");
-//	CCPoint point = this->convertToNodeSpace(*((CCPoint*)param));
+	CCPoint point = this->convertToNodeSpace(*((CCPoint*)param));
 //	YGOCardCell* card = (YGOCardCell*)pSender;
-//	card->getCard();
-	//show button as needed;
-//	CCMenuItemImageFont * menuItem = CCMenuItemImageFont::itemWithTarget("盖放",
-//			"Arial", "GUI/button.png", this, menu_selector(YGODuelFieldFrame::menuItemCallback));
-//	m_pMenu = CCMenu::createWithItem(menuItem);
-//	m_pMenu->setPosition(point);
-//	addChild(m_pMenu, 100);
+	std::vector<CCString*> strings;
+	strings.push_back(CCString::create("盖放"));
+	m_pCardOpsPanel = YGOCardOpsPanel::createWithItems("orange_edit.png", &strings, 30);
+	m_pCardOpsPanel->setPosition(point);
+	m_pCardOpsPanel->addItemSelectedListener(this, callfuncND_selector(YGODuelFieldFrame::menuItemCallback));
+	addChild(m_pCardOpsPanel, 100);
 }
 
 void YGODuelFieldFrame::widgetTouchedCallBack(CCObject* pSender) {
 	CCLOG("cardInHand touched!");
 }
 
-void YGODuelFieldFrame::menuItemCallback(CCObject* pSender) {
+void YGODuelFieldFrame::menuItemCallback(CCObject* pSender, void * param) {
 	CCLOG("menuButtonCallback called!");
-	removeChild(m_pMenu);
+	removeChild(m_pCardOpsPanel);
 }
 
 void YGODuelFieldFrame::buttonCallback(CCObject* pSender,
